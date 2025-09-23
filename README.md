@@ -32,7 +32,7 @@ python gen_data/gen_simcse_data.py --data_path {csv data path} --encoding {encod
 python gen_data/gen_simcse_data.py --data_path {csv data path} --encoding {encoding} --desc_col {anchor column} --category_col {hard negative column} --positive_cols {positive column1, ...} ----domain_col {domain column} --output_dir {unsupervised, supervised train data save folder path}
 ```
 
-  3. [Domainwise Version](gen_data/simcse_data_gen_domainwise.py)
+  3. [Multi-Negative with Positive Fusion Version](gen_data/simcse_data_gen_domainwise.py)
 
     * Unsupervised learning data: converting all columns in a row to a text
     * Mapping method of supervised learning data:
