@@ -31,7 +31,7 @@ def create_training_data(file_path, desc_col, category_col, positive_cols, encod
         sys.exit(1)
 
     # 필요한 모든 컬럼이 존재하는지 확인
-    required_cols = [desc_col, category_col] + positive_cols
+    required_cols = [desc_col] + positive_cols
     missing_cols = [col for col in required_cols if col not in df.columns]
     if missing_cols:
         print(f"❌ 파일에 필요한 컬럼이 없습니다: {', '.join(missing_cols)}", file=sys.stderr)
@@ -96,7 +96,7 @@ def main():
                         help="기준 문장(Anchor)으로 사용할 설명 컬럼명")
     parser.add_argument("--category_col", type=str, default="분류",
                         help="그룹화 및 Hard Negative 탐색에 사용할 분류 컬럼명")
-    parser.add_argument("--positive_cols", type=str, nargs='+', default=["표제어", "영문"],
+    parser.add_argument("--positive_cols", type=str, nargs='+', default=["대분류", "중분류"],
                         help="긍정 쌍(Positive)으로 사용할 컬럼명 리스트 (스페이스로 구분)")
     parser.add_argument("--encoding", type=str, default="utf-8")
 
@@ -147,4 +147,5 @@ def main():
             print(f"{i+1}: {triplet}")
 
 if __name__ == "__main__":
+
     main()
