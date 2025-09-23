@@ -13,7 +13,7 @@ Generating Unsupervised & Supervised SimCSE Data
     * Each script creates both unsupervised samples and supervised samples (anchor, positive, negative) from an input CSV file.
     * They differ in how they construct anchor–positive–negative pairs, how the data is split, and how negatives are sampled.
    
-  1. [Baseline](gen_simcse_data.py)
+  1. [Baseline](simcse_data_gen_basic.py)
 
 ```
 python gen_simcse_data.py --data_path {csv data path} --encoding {encoding} --desc_col {anchor column} --category_col {hard negative column} --positive_cols {positive column1, ...} --output_unsupervised {unsupervised train data path} --output_supervised {supervised train data path}
