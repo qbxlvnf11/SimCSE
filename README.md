@@ -15,10 +15,10 @@ Generating Unsupervised & Supervised SimCSE Data
    
   1. [Baseline](gen_data/simcse_data_gen_basic.py)
 
-    * Unsupervised learning data: converting all columns in a row to a text
-    * Mapping method of supervised learning data:
-      * For each anchor, create anchor–positive pairs (number of positive columns pairs) using each positive column.
-      * Attach one random negative to each pair.
+  * Unsupervised learning data: converting all columns in a row to a text
+  * Mapping method of supervised learning data:
+    * For each anchor, create anchor–positive pairs (number of positive columns pairs) using each positive column.
+    * Attach one random negative to each pair.
 
 ```
 python gen_data/gen_simcse_data.py --data_path {csv data path} --encoding {encoding} --desc_col {anchor column} --category_col {hard negative column} --positive_cols {positive column1, ...} --output_unsupervised {unsupervised train data save path} --output_supervised {supervised train data save path}
