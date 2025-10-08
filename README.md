@@ -28,7 +28,7 @@ Run
 python gen_data/text_embedder_fine_tuning_data_gen_basic.py --data_path {csv data path} --encoding {encoding} --desc_col {anchor column} --category_col {hard negative column} --positive_cols {positive column1, ...} --output_unsupervised {unsupervised train data save path} --output_supervised {supervised train data save path}
 ```
 
-  2. [Domainwise Version](gen_data/ text_embedder_fine_tuning_data_gen_domainwise.py)
+  2. [Domainwise Version](gen_data/text_embedder_fine_tuning_data_gen_domainwise.py)
 
   * Same as baseline, but with domain-based data separation. (Each domain gets its own dataset file.)
 
