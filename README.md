@@ -1,7 +1,11 @@
-### - Contents
- 
+Contents
+=============
+
 * Generating Unsupervised & Supervised Train Data of Text Embedding Model
 * Text Embedding Model Fine-Tuning Methods: SimCSE, Triplet Loss etc.
+
+Run
+=============
 
 ### - Generating Unsupervised & Supervised Data for Fine-Tuning Embedding Model
 
@@ -82,7 +86,8 @@ Document: Home Loan Application Guide -> 🤖 Score: 0.108175
 
 </details>
 
-### - Reference
+Reference
+=============
 
 #### - [SimCSE (Simple Contrastive Learning of Sentence Embeddings)](https://aclanthology.org/2021.emnlp-main.552) 
 
