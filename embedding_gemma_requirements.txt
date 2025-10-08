@@ -1,0 +1,4 @@
+huggingface_hub
+dotenv
+sentence_transformers
+datasets

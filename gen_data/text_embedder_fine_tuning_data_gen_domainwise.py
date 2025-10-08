@@ -6,7 +6,7 @@ import os
 
 def process_dataframe(df, desc_col, category_col, positive_cols):
 
-    # 어려운 부정 쌍(Hard Negative)을 쉽게 찾기 위해 '분류'별로 데이터 그룹화
+    # Hard Negative을 쉽게 찾기 위해 '분류'별로 데이터 그룹화
     category_groups = df.groupby(category_col)[desc_col].apply(list).to_dict()
 
     unsupervised_samples = []
@@ -36,7 +36,7 @@ def process_dataframe(df, desc_col, category_col, positive_cols):
             if not positive_text or positive_text == anchor:
                 continue
 
-            # 어려운 부정 쌍 찾기
+            # Hard Negative Pairs 찾기
             category = str(row[category_col]).strip()
             hard_negative_candidates = [
                 desc for desc in category_groups.get(category, []) if desc != anchor
@@ -66,7 +66,7 @@ def main():
     parser.add_argument("--category_col", type=str, default="분류",
                         help="그룹화 및 Hard Negative 탐색에 사용할 분류 컬럼명")
     parser.add_argument("--positive_cols", type=str, nargs='+', default=["표제어", "영문"],
-                        help="긍정 쌍(Positive)으로 사용할 컬럼명 리스트 (스페이스로 구분)")
+                        help="Positive으로 사용할 컬럼명 리스트 (스페이스로 구분)")
     parser.add_argument("--encoding", type=str, default="utf-8")
 
     parser.add_argument("--domain_col", type=str, required=True, help="(선택) 데이터를 분리할 기준이 되는 도메인 컬럼명")

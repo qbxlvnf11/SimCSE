@@ -12,7 +12,7 @@ def create_training_data(file_path, desc_col, category_col, positive_cols, encod
         file_path (str): 입력 CSV 파일 경로.
         desc_col (str): 기준 문장(Anchor)으로 사용할 설명 컬럼명.
         category_col (str): 데이터를 그룹화할 분류 컬럼명.
-        positive_cols (list): 긍정 쌍(Positive)으로 사용할 컬럼명 리스트.
+        positive_cols (list): Positive로 사용할 컬럼명 리스트.
 
     Returns:
         tuple: (unsupervised_samples, supervised_triplets) 튜플을 반환합니다.
@@ -37,7 +37,7 @@ def create_training_data(file_path, desc_col, category_col, positive_cols, encod
         print(f"❌ 파일에 필요한 컬럼이 없습니다: {', '.join(missing_cols)}", file=sys.stderr)
         sys.exit(1)
 
-    # 어려운 부정 쌍(Hard Negative)을 쉽게 찾기 위해 '분류'별로 데이터 그룹화
+    # Hard Negative을 쉽게 찾기 위해 '분류'별로 데이터 그룹화
     category_groups = df.groupby(category_col)[desc_col].apply(list).to_dict()
 
     unsupervised_samples = []
@@ -60,14 +60,14 @@ def create_training_data(file_path, desc_col, category_col, positive_cols, encod
         # --- 2. 지도 학습용 Triplet 데이터 생성 ---
         anchor = description
         
-        # 긍정 쌍 후보군: category 컬럼과 positive_cols에 지정된 컬럼들
+        # Positive Pairs 후보군: category 컬럼과 positive_cols에 지정된 컬럼들
         current_positive_cols = [category_col] + positive_cols
         for pos_col_name in current_positive_cols:
             positive_text = str(row[pos_col_name]).strip()
             if not positive_text or positive_text == anchor:
                 continue
 
-            # 어려운 부정 쌍 찾기
+            # Hard Negative Pairs 찾기
             category = str(row[category_col]).strip()
             hard_negative_candidates = [
                 desc for desc in category_groups.get(category, []) if desc != anchor
@@ -97,7 +97,7 @@ def main():
     parser.add_argument("--category_col", type=str, default="분류",
                         help="그룹화 및 Hard Negative 탐색에 사용할 분류 컬럼명")
     parser.add_argument("--positive_cols", type=str, nargs='+', default=["대분류", "중분류"],
-                        help="긍정 쌍(Positive)으로 사용할 컬럼명 리스트 (스페이스로 구분)")
+                        help="Positive으로 사용할 컬럼명 리스트 (스페이스로 구분)")
     parser.add_argument("--encoding", type=str, default="utf-8")
 
     parser.add_argument("--output_unsupervised", type=str, help="(선택) 비지도 학습 데이터를 저장할 CSV 파일 경로")
