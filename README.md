@@ -77,11 +77,83 @@ python embedding_gemma_fine_tuning_test.py
 
 * Results
 
+  * Before Fine-Tuning
+
 ```
-- Query: I want to start a tax-free installment investment, what should I do?
-Document: Opening a NISA Account -> 🤖 Score: 0.403728
-Document: Opening a Regular Savings Account -> 🤖 Score: 0.329424
-Document: Home Loan Application Guide -> 🤖 Score: 0.108175
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.281624
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.291065
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.178349
+====================================
+```
+
+  * TripletLoss
+
+```
+## triplet_margin=0.5, batch=3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.652784
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.032676
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.183048
+====================================
+
+## triplet_margin=0.7, batch=3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.812057
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: -0.170041
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.091807
+====================================
+```
+
+  * MultipleNegativesRankingLoss 
+
+```
+## scale = 20, batch = 3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.904604
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.878559
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: -0.050656
+====================================
+
+## scale = 30, batch = 3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.705811
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.612812
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: -0.024527
+====================================
+
+## scale = 30, batch = 2
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.880872
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.751842
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.516426
+====================================
+```
+
+  * AnglELoss 
+
+```
+## scale = 20, batch = 3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.624790
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.304153
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.247993
+====================================
+
+## scale = 30, batch = 3
+============ get_scores ============
+- Query: task: search result | query:  I want to start a tax-free installment investment, what should I do?
+Document: title: none | text:  Opening a NISA Account -> 🤖 Score: 0.536980
+Document: title: none | text:  Opening a Regular Savings Account -> 🤖 Score: 0.285615
+Document: title: none | text:  Home Loan Application Guide -> 🤖 Score: 0.160317
+====================================
 ```
 
 </details>
